@@ -5,7 +5,7 @@ import urlRoutes from './routes/urlRoutes.js'
 
 
 const app = express();
-const PORT = process.env.DB_PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.disable('x-powered-by');
 app.use(bodyParser.json());
