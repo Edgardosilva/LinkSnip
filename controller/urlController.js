@@ -27,3 +27,7 @@ export const redirectURL = async (req, res) => {
     res.status(500).json({ error: "Database error" });
   }
 };
+
+export const welcome = (req, res) => {
+  res.send('Welcome to the URL shortener API');
+}

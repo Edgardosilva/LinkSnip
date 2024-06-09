@@ -1,12 +1,11 @@
 import express from 'express';
-import { shortenURL, redirectURL } from '../controller/urlController.js';
+import { shortenURL, redirectURL, welcome } from '../controller/urlController.js';
 
 const router = express.Router();
 
-router.post('/api/shorten', shortenURL);
+router.get('/', welcome)
 router.get('/:shortUrl', redirectURL);
-router.get('/', (req, res) => {
-  res.send('Welcome to the URL shortener API');
-});
+router.post('/api/shorten', shortenURL);
+
 
 export default router;
