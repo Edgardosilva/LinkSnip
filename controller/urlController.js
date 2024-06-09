@@ -22,7 +22,7 @@ export const redirectURL = async (req, res) => {
     if (results.length === 0) {
       return res.status(404).json({ error: "URL not found" });
     }
-    res.redirect(results[0].longUrl);
+    res.redirect(results[0].longurl);
   } catch (err) {
     res.status(500).json({ error: "Database error" });
   }
