@@ -1,24 +1,25 @@
-import { sql } from "@vercel/postgres";
+import pkg from 'pg';
+const { Client } = pkg;
 
-let db;
+let client;
 
 async function initializeDatabase() {
-  if (!db) {
+  if (!client) {
     try {
-      db = await sql.createConnection({
-        host: process.env.POSTGRES_HOST || 'localhost',
-        user: process.env.POSTGRES_USER || 'root',
-        password: process.env.POSTGRES_PASSWORD || 'root',
-        database: process.env.POSTGRES_DATABASE || 'urlshortener',
-        connectTimeout: 10000 // Tiempo de espera en milisegundos
+      client = new Client({
+        connectionString: process.env.POSTGRES_URL,
+        ssl: {
+          rejectUnauthorized: false // Es necesario solo si estás utilizando SSL
+        }
       });
-      console.log('Conectado a MySQL');
+      await client.connect();
+      console.log('Conectado a PostgreSQL');
     } catch (error) {
       console.error('Error al conectar a la base de datos:', error);
       throw error;
     }
   }
-  return db;
+  return client;
 }
 
 export default initializeDatabase;
