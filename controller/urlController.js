@@ -16,7 +16,7 @@ export const shortenURL = async (req, res) => {
 
 
 export const redirectURL = async (req, res) => {
-  const shorturl = req.params.shortUrl;
+  const shorturl = req.params.shorturl;
   try {
     const results = await getURL(shorturl);
     if (results.length === 0) {
