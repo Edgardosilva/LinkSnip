@@ -16,9 +16,9 @@ export const shortenURL = async (req, res) => {
 
 
 export const redirectURL = async (req, res) => {
-  const shortUrl = req.params.shortUrl;
+  const shorturl = req.params.shortUrl;
   try {
-    const results = await getURL(shortUrl);
+    const results = await getURL(shorturl);
     if (results.length === 0) {
       return res.status(404).json({ error: "URL not found" });
     }
