@@ -9,7 +9,7 @@ export const createURL = async (longUrl, shortUrl) => {
 export const getURL = async (shortUrl) => {
   try {
     const db = await initializeDatabase();
-    const query = 'SELECT longurl FROM urls WHERE shorturl = $1';
+    const query = 'SELECT longurl FROM urls WHERE shorturl = ?';
     const results = await db.query(query, [shortUrl]);
     return results.rows;
   } catch (error) {
