@@ -6,10 +6,10 @@ async function initializeDatabase() {
   if (!db) {
     try {
       db = await mysql.createConnection({
-        host: process.env.DB_HOST || 'localhost',
-        user: process.env.DB_USER || 'root',
-        password: process.env.DB_PASSWORD || 'root',
-        database: process.env.DB_NAME || 'urlshortener',
+        host: process.env.POSTGRES_HOST || 'localhost',
+        user: process.env.POSTGRES_USER || 'root',
+        password: process.env.POSTGRES_PASSWORD || 'root',
+        database: process.env.POSTGRES_DATABASE || 'urlshortener',
         connectTimeout: 10000 // Tiempo de espera en milisegundos
       });
       console.log('Conectado a MySQL');
