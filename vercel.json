@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/shortUrls(.*)",
-      "dest": "index.js"
+      "dest": "/routes/urlRoutes.js"
     }
   ]
 }
