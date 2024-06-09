@@ -20,7 +20,7 @@ export const redirectURL = async (req, res) => {
   try {
     const results = await getURL(shorturl);
     if (results.length === 0) {
-      return res.status(404).json({ error: "URL not found" });
+      return res.status(404).json({ error: "ShortURL not found" });
     }
     res.redirect(results[0].longurl);
   } catch (err) {
