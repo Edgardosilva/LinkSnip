@@ -1,11 +1,11 @@
-import mysql from 'mysql2/promise';
+import { sql } from "@vercel/postgres";
 
 let db;
 
 async function initializeDatabase() {
   if (!db) {
     try {
-      db = await mysql.createConnection({
+      db = await sql.createConnection({
         host: process.env.POSTGRES_HOST || 'localhost',
         user: process.env.POSTGRES_USER || 'root',
         password: process.env.POSTGRES_PASSWORD || 'root',
