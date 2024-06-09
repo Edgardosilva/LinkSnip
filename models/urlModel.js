@@ -7,8 +7,13 @@ export const createURL = async (longUrl, shortUrl) => {
 };
 
 export const getURL = async (shortUrl) => {
-  const db = await initializeDatabase();
-  const query = 'SELECT "longurl" FROM "urls" WHERE "shorturl" = $1';
-  const results = await db.query(query, [shortUrl]);
-  return results.rows;
+  try {
+    const db = await initializeDatabase();
+    const query = 'SELECT longUrl FROM urls WHERE shortUrl = $1';
+    const results = await db.query(query, [shortUrl]);
+    return results.rows;
+  } catch (error) {
+    console.error('Error al acceder a la base de datos:', error);
+    throw error; // Lanza el error para que pueda ser manejado en el bloque catch de redirectURL
+  }
 };
