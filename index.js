@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(cors())
 
 
-app.use('/shortUrls', urlRoutes);
+app.use('/', urlRoutes);
 
 
 app.listen(PORT, () => {
