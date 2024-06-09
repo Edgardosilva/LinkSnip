@@ -8,8 +8,8 @@
   ],
   "routes": [
     {
-      "src": "/shortUrls(.*)",
-      "dest": "/routes/urlRoutes.js"
+      "src": "/(.*)",
+      "dest": "index.js"
     }
   ]
 }
