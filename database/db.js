@@ -8,9 +8,7 @@ async function initializeDatabase() {
     try {
       client = new Client({
         connectionString: process.env.POSTGRES_URL,
-        ssl: {
-          rejectUnauthorized: false // Es necesario solo si estás utilizando SSL
-        }
+        ssl: false
       });
       await client.connect();
       console.log('Conectado a PostgreSQL');
