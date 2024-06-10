@@ -16,13 +16,13 @@ export const shortenURL = async (req, res) => {
 
 
 export const redirectURL = async (req, res) => {
-  const shorturl = req.params.shorturl;
+  const shortUrl = req.params.shortUrl;
   try {
-    const results = await getURL(shorturl);
+    const results = await getURL(shortUrl);
     if (results.length === 0) {
       return res.status(404).json({ error: "ShortURL not found" });
     }
-    res.redirect(results[0].longurl);
+    res.redirect(results[0].longUrl);
   } catch (err) {
     res.status(500).json({ error: "Database error" });
   }
