@@ -1,23 +1,28 @@
-// db.js
-import { Pool } from 'pg';
+import pkg from "pg";
+const { Client } = pkg;
 
-export const pool = new Pool({
-    host: process.env.POSTGRES_HOST,
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DATABASE,
-    port: process.env.POSTGRES_PORT || 5432,  // Puerto por defecto es 5432
-    ssl: {
-        rejectUnauthorized: false,
-    },
-});
+let client;
 
-pool.on('connect', () => {
-    console.log('Connected to the PostgreSQL database');
-});
+async function initializeDatabase() {
+  if (!client) {
+    try {
+      client = new Client({
+        user: process.env.POSTGRES_USER,
+        host: process.env.POSTGRES_HOST,
+        database: process.env.POSTGRES_DATABASE,
+        password: process.env.POSTGRES_PASSWORD,
+        port: process.env.DB_PORT,
+        ssl: false,
+      });
+      await client.connect();
+      console.log("Conectado a PostgreSQL");
+    } catch (error) {
+      console.error("Error al conectar a la base de datos:", error.message);
+      console.error("Stack trace:", error.stack);
+      throw error;
+    }
+  }
+  return client;
+}
 
-pool.on('error', (err) => {
-    console.error('Unexpected error on idle client', err);
-    process.exit(-1);
-});
-
+export default initializeDatabase;
