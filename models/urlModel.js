@@ -1,4 +1,4 @@
-import initializeDatabase from '../database/db.js';
+import { initializeDatabase } from '../database/db.js';
 
 export const createURL = async (longUrl, shortUrl) => {
   const db = await initializeDatabase();
