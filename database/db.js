@@ -1,7 +1,7 @@
-import pg from 'pg';
+import { Pool } from "@vercel/postgres";
 
 export const initializeDatabase = async () => {
-    const pool = new pg.Pool({
+    const pool = new Pool({
         host: process.env.POSTGRES_HOST,
         user: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
