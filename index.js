@@ -10,7 +10,12 @@ const PORT = process.env.PORT || 3000;
 
 app.disable('x-powered-by');
 app.use(bodyParser.json());
-app.use(cors())
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}))
 
 
 app.use('/', urlRoutes);
